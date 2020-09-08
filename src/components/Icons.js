@@ -8,7 +8,8 @@ const Icon = ({name}) => {
         case "cross":
             return <FaTimes className='icons' />
         case "empty":
-            return <FaPen className='icons' />    
+            return <FaPen className='icons' /> 
+        default :   
      
     }
 };

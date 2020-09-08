@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Cards, CardBody, Container, Button, Col, Row, Card} from "reactstrap";
+import {CardBody, Container, Button, Col, Row, Card} from "reactstrap";
 
 import './App.css';
 
@@ -66,6 +66,9 @@ const App = () => {
     {
       setWinMessage(`${itemArray[2]} won`);
     }
+    else if(itemArray[0]!=='empty' && itemArray[1]!=='empty' && itemArray[2]!=='empty'&&itemArray[3]!=='empty'&&itemArray[4]!=='empty'&&itemArray[5]!=='empty'&&itemArray[6]!=='empty'&&itemArray[7]!=='empty'&&itemArray[8]!=='empty'){
+      setWinMessage(`It's a DRAW`);
+    }
   }
 
   const changeItem = itemNumber => {
@@ -81,36 +84,37 @@ const App = () => {
     
     checkIsWinner();
   }
-  return(
-    
-      <Container className="p-5">
-        <ToastContainer position="bottom-center"/>
-        <Row>
-          <Col md = {6} className="offset-md-3">
-           {winMessage ? (
-             <div className = 'mb-2 mt-2' >
-              <h1 className = 'text-center text-success text-uppercase'>
+  return (
+    <Container className="p-5">
+      <ToastContainer position="bottom-center" />
+      <Row>
+        <Col md={6} className="offset-md-3">
+          {winMessage ? (
+            <div className="mb-2 mt-2">
+              <h1 className="text-center text-success text-uppercase">
                 {winMessage}
               </h1>
-              <Button color = 'success' block onClick ={reloadGame} >Restart Game</Button>
-             </div>
-           ):(
-             <h1 className ="text-center text-warning">
-               {isCross ? "cross" : 'circle'}'s turn
-             </h1>
-           )}
-            <div className = 'grid'>
-              {itemArray.map((item,index)=>(
-                <Card className = "color" onClick ={() => changeItem(index)}>
-                  <CardBody className ='box'>
-                    <Icon name = {item}/>
-                  </CardBody>
-                </Card>
-              ))}
+              <Button color="success" block onClick={reloadGame}>
+                Restart Game
+              </Button>
             </div>
-          </Col>
-        </Row>
-      </Container>
+          ) : (
+            <h1 className="text-center text-warning">
+              {isCross ? "cross" : "circle"}'s turn
+            </h1>
+          )}
+          <div className="grid">
+            {itemArray.map((item, index) => (
+              <Card className="color" onClick={() => changeItem(index)}>
+                <CardBody className="box">
+                  <Icon name={item} />
+                </CardBody>
+              </Card>
+            ))}
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
